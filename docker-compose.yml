@@ -1,0 +1,17 @@
+version: '2'
+services:
+  fusebox:
+    build: ./
+    container_name: fusebox
+    tty: true
+    restart: always
+    networks:
+      - docker-localhost
+    ports:
+      - 80:80
+    volumes:
+      - ./src/web:/var/www/html
+    devices:
+        - /dev/ttyUSB0:/dev/ttyUSB0
+networks:
+  docker-localhost:
