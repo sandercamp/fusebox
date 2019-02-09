@@ -1,7 +1,8 @@
 <?php
+require 'vendor/autoload.php';
 
-include 'Reader/ESMRReader.php'; 
-include 'Parser/ESMRParser.php';
+use Fusebox\Parser\ESMRParser;
+use Fusebox\Reader\ESMRReader;
 
 $parser = new ESMRParser();
 

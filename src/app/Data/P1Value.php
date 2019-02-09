@@ -1,5 +1,7 @@
 <?php
 
+namespace Fusebox\Data;
+
 class P1Value
 {
     private $description = '';

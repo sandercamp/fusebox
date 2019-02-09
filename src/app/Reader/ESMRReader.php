@@ -1,6 +1,6 @@
 <?php
 
-include 'ReaderInterface.php';
+namespace Fusebox\Reader;
 
 class ESMRReader implements ReaderInterface
 {

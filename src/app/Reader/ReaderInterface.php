@@ -1,5 +1,7 @@
 <?php
 
+namespace Fusebox\Reader;
+
 interface ReaderInterface
 {
     /**

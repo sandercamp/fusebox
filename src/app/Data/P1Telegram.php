@@ -1,6 +1,6 @@
 <?php
 
-include 'P1Value.php';
+namespace Fusebox\Data;
 
 class P1Telegram
 {

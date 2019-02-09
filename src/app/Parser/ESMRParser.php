@@ -1,6 +1,8 @@
 <?php
 
-include 'Data/P1Telegram.php';
+namespace Fusebox\Parser;
+
+use Fusebox\Data\P1Telegram;
 
 class ESMRParser
 {
@@ -25,7 +27,7 @@ class ESMRParser
 
         unset($data[count($data) - 1]);
         unset($data[0]);
-        
+
 
         // Parse the rest of the raw data
         foreach ($data as $line) {
