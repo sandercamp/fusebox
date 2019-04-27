@@ -9,10 +9,11 @@ class Baudrate implements BaudrateInterface
         //(shell_exec('stty -F /dev/ttyUSB0'));
     }
 
-    public function setValue(int $baudrate)
+    /**
+     * Set the baudrate for a device
+     */
+    public function setValue(string $devicePath, int $baudrate)
     {
-        shell_exec(sprintf('stty -F /dev/ttyUSB0 %d', $baudrate));
-
-        $this->getValue();
+        shell_exec(sprintf('stty -F %s %d', $devicePath, $baudrate));
     }
 }

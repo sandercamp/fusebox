@@ -7,5 +7,5 @@ interface BaudrateInterface
 
     public function getValue();
 
-    public function setValue(int $baudrate);
+    public function setValue(string $devicePath, int $baudrate);
 }

@@ -21,7 +21,22 @@ services:
     # as action arguments even if you don't extend any base controller class
     App\Controller\:
         resource: '../src/Controller'
+        arguments:
+            $messageCollector: '@App\Fusebox\MessageCollector'
         tags: ['controller.service_arguments']
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    App\Fusebox\MessageCollector:
+        arguments:       
+            $reader: '@App\Fusebox\Reader\ESMRReader'
+            $parser: '@App\Fusebox\Parser\ESMRParser'
+
+    App\Fusebox\Reader\ESMRReader:
+        arguments:
+            $baudrate: '@App\Fusebox\Reader\Baudrate'
+
+    App\Fusebox\Reader\Baudrate:
+        arguments:
+
+    App\Fusebox\Parser\ESMRParser:
+        arguments:
+

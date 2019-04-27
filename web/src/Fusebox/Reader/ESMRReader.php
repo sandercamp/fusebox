@@ -4,33 +4,43 @@ namespace App\Fusebox\Reader;
 
 class ESMRReader implements ReaderInterface
 {
-    const MESSAGE_LINES = 24;
+    const TELEGRAM_LINE_LENGTH = 24;
 
-    private $rawContents = [];
+    private $baudrate;
 
     public function __construct(BaudrateInterface $baudrate)
     {
-        $baudrate->setValue(115200);
+        $this->baudrate = $baudrate;
     }
     
-    public function read(string $filePath)
+    /**
+     * Reads a single telegram from a device
+     *
+     * @param string $devicePath
+     *
+     * @return array
+     */
+    public function read(string $devicePath) : array
     {
-        $handle = fopen($filePath, 'r');
+        $this->baudrate->setValue($devicePath, 115200);
+
+        $contents = [];
+        $handle = fopen($devicePath, 'r');
 
         $i = 0;
-        while ($i <= self::MESSAGE_LINES && ($line = fgets($handle)) !== false) {
+        while ($i <= self::TELEGRAM_LINE_LENGTH && ($line = fgets($handle)) !== false) {
             // Skip blank lines
             if (empty(trim($line))) {
                 continue;
             }
 
-            $this->rawContents[] = $line;
+            $contents[] = $line;
 
             $i++;
         }
 
         fclose($handle);
 
-        return $this->rawContents;
+        return $contents;
     }
 }

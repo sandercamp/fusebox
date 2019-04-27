@@ -4,7 +4,7 @@ namespace App\Fusebox\Parser;
 
 use App\Fusebox\Data\P1Telegram;
 
-class ESMRParser
+class ESMRParser implements ParserInterface
 {
     private $telegram;
 
@@ -12,8 +12,15 @@ class ESMRParser
     {
         $this->telegram = new P1Telegram();
     }
-
-    public function parse(array $data)
+    
+    /**
+     * Parses raw ESMR telegram data
+     *
+     * @param array $data
+     *
+     * @return P1Telegram
+     */
+    public function parse(array $data) : P1Telegram
     {
         if (count($data) === 0) {
             // TODO: Implement specialized exception
@@ -40,6 +47,13 @@ class ESMRParser
         return $this->telegram;
     }
 
+    /**
+     * Parses a single line
+     *
+     * @param string $line
+     *
+     * @return array
+     */
     private function parseLine(string $line) : array
     {
         return [
