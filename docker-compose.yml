@@ -10,8 +10,18 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./src/web:/var/www/html
+      - ./web:/var/www/html
     devices:
-        - /dev/ttyUSB0:/dev/ttyUSB0
+      - /dev/ttyUSB0:/dev/ttyUSB0
+  mysql:
+    image: hypriot/rpi-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fusebox
+    volumes:
+      - ./mysql:/var/lib/mysql:rw
+    ports:
+      - 3306:3306
 networks:
   docker-localhost:

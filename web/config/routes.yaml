@@ -1,0 +1,6 @@
+index:
+   path: /
+   controller: App\Controller\MessageController::index
+message:
+   path: /message
+   controller: App\Controller\MessageController::message
